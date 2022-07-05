@@ -1,0 +1,6 @@
+name: Autoplant
+version: '${version}'
+main: nyc.cleo.autoplant.Autoplant
+api-version: 1.19
+authors: [ cleonyc ]
+description: Automatically regenerates broken crops
