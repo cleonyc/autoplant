@@ -17,33 +17,29 @@ class BreakEventHandler : Listener {
         if (e.isCancelled) {
             return
         }
-        println("c")
         try {
             val block = e.blockState.blockData as Ageable
             if (block.age != block.maximumAge) {
                 return
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
+        } catch (ignored: Exception) {
             return
         }
-        println("b")
         when (e.blockState.type) {
             Material.CARROTS -> {
-                e.items.removeLast()
+                e.items.removeFirst()
             }
             Material.POTATOES -> {
-                e.items.removeLast()
+                e.items.removeFirst()
             }
             Material.WHEAT -> {
-                println("a")
-                e.items.remove(e.items.find { i -> i.itemStack.type == Material.WHEAT_SEEDS })
+                e.items.forEach{i -> if(i.itemStack.type == Material.WHEAT_SEEDS)  {i.itemStack.amount -= 1} }
             }
             Material.BEETROOTS -> {
-                e.items.removeLast()
+                e.items.forEach{i -> if(i.itemStack.type == Material.BEETROOT_SEEDS)  {i.itemStack.amount -= 1} }
             }
             Material.NETHER_WART -> {
-                e.items.removeLast()
+                e.items.forEach{i -> if(i.itemStack.type == Material.NETHER_WART)  {i.itemStack.amount -= 1} }
             }
             else -> {
                 return
